@@ -36,18 +36,14 @@ namespace DemoApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-
-
 
             services
                 .AddTransient<IAccountService>(
                     provider => new AccountService(provider.GetService<IAccountLogging>()))
                 .AddTransient<ICustomerService, CustomerService>()
                 .AddTransient<IAccountLogging, AccountLoggingService>();
-
+            
             var transactionTypes = new KeyValuePair<TransactionType, Type>[]
             {
                 new KeyValuePair<TransactionType, Type>(TransactionType.InterBankTransfer,
