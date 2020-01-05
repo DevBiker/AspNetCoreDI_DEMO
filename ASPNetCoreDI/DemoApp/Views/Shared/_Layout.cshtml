@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/jquery/jquery.js"></script>
+    <script src="~/js/site.js"></script>
+    <link href="~/css/navigation.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+<div id="container">
+    <header id="pageHeader">
+        <center>
+            <img src="~/images/header.jpg" />
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href="~/AccountInfo/AccountInformation/Index">AccountInfo</a>
+
+                    </li>
+                    @* <li>@Html.ActionLink("AccountInfo", "Index", "AccountInformation", new { area = "AccountInfo" }, null)</li>*@
+                    <li>
+                        <a href="~/FundTransfer/FundTransfer/Index">Fund Transfer</a>
+                    </li>
+                </ul>
+            </nav>
+        </center>
+    </header>
+    <br />
+    <br />
+    <div id="pageContainer">
+        @RenderBody()
+    </div>
+</div>
+</body>
+</html>

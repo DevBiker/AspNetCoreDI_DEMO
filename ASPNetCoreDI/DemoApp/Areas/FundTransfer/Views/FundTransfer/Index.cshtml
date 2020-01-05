@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model  IEnumerable<UnityDemos.Services.Models.TransactionType>
+<span id="headingSpan">Please select your desired Fund Transfer type:</span>
+
+
+
+<div id="firstDiv">
+    @{ var makeUniqueID = 0;
+     var radioButtonId = "radioButton";
+     var finalID = "";
+    }
+    <div id="secondDiv">
+        @foreach (var item in Model)
+        {
+
+            makeUniqueID = makeUniqueID += 1;
+            finalID = radioButtonId + makeUniqueID;
+            <input type="radio" value="@item" name="check" id="@finalID" />
+            <span>@item</span>
+            <br />
+        }
+    </div>
+</div>
+<div id="fundTransferForm" class="containerDiv">
+
+</div>

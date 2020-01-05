@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model  UnityDemos.Services.Models.Customer
+<span id="headingSpan">Customer Information:</span>
+<div id="tblDiv">
+    <table id="accountDetailTable" >
+        <tr class="tblHearerRow">
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Phone
+            </th>
+        </tr>
+        
+        <tr class="tblRow">
+            <td class="tblColumn">
+                @Html.DisplayFor(modelItem => Model.CustomerName)
+            </td>
+            <td class="tblColumn">
+                @Html.DisplayFor(modelItem => Model.CustomerAddress)
+            </td>
+
+            <td class="tblColumn">
+                @Html.DisplayFor(modelItem => Model.CustomerPhone)
+            </td>
+        </tr>
+    
+    </table>
+</div>
+
+<div id="accountDetailContiner" class="containerDiv">
+
+</div>

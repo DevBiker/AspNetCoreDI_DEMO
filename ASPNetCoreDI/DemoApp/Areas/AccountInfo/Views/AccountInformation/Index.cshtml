@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model  IEnumerable<UnityDemos.Services.Models.Account>
+<span>
+    @Html.ActionLink("Customer Information", "Index", "Customer");
+</span>
+<span id="headingSpan">Following is your account:</span>
+<div id="tblDiv">
+    <table id="accountDetailTable" >
+        <tr class="tblHearerRow">
+            <th>
+                Account Number
+            </th>
+            <th>
+                Account Type
+            </th>
+            <th>
+                Current Balance
+            </th>
+            <th>
+                Branch Name
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="tblRow">
+                <td class="tblColumn">
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </td>
+                <td class="tblColumn">
+                    @Html.DisplayFor(modelItem => item.AccountType)
+                </td>
+
+                <td class="tblColumn">
+                    @Html.DisplayFor(modelItem => item.CurrentBalance)
+                </td>
+                <td class="tblColumn">
+                    @Html.DisplayFor(modelItem => item.BranchName)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div id="accountDetailContiner" class="containerDiv">
+
+</div>
