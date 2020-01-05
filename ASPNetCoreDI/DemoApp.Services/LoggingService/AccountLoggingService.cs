@@ -11,7 +11,7 @@ namespace UnityDemos.Services.LoggingService
     {
         public AccountLoggingService()
         {
-            Debug.WriteLine("Dependency " + this.GetType().Name + " Created");
+            Debug.WriteLine("*** Dependency " + this.GetType().Name + " Created");
 
         }
         /// <inheritdoc />

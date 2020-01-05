@@ -16,7 +16,7 @@ namespace UnityDemos.Services.TransferService
 
         public FundTransferService(KeyValuePair<TransactionType, Type>[] transferServices)
         {
-            Debug.WriteLine("Dependency " + this.GetType().Name + " Created");
+            Debug.WriteLine("*** Dependency " + this.GetType().Name + " Created");
             foreach (var specificServices in transferServices)
             {
                 _transferServices[specificServices.Key] = specificServices.Value;

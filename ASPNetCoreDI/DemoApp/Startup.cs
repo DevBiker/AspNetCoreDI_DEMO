@@ -42,18 +42,14 @@ namespace DemoApp
                 .AddTransient<IAccountService>(
                     provider => new AccountService(provider.GetService<IAccountLogging>()))
                 .AddTransient<ICustomerService, CustomerService>()
-                .AddTransient<IAccountLogging, AccountLoggingService>();
-            
-            var transactionTypes = new KeyValuePair<TransactionType, Type>[]
-            {
-                new KeyValuePair<TransactionType, Type>(TransactionType.InterBankTransfer,
-                    typeof(InterBankTransferService)),
-                new KeyValuePair<TransactionType, Type>(TransactionType.IntraBankTransfer,
-                    typeof(IntraBankTransferService)),
-                new KeyValuePair<TransactionType, Type>(TransactionType.OwnAccountTransfer,
-                    typeof(OwnAccountTransferService)),
-            };
-            services.AddTransient<IFundTransferService>(provider => new FundTransferService(transactionTypes));
+                //The account logging service is used by multiple other dependencies in a call. 
+                .AddTransient<IAccountLogging, AccountLoggingService>()
+                .TryAddEnumerable(new[] {
+                    ServiceDescriptor.Transient<IFundTransferService, InterBankTransferService>(),
+                    ServiceDescriptor.Transient<IFundTransferService, IntraBankTransferService>(),
+                    ServiceDescriptor.Transient<IFundTransferService, OwnAccountTransferService>(),
+                    });
+                
 
             services.AddLogging();
             services.AddHttpContextAccessor();

@@ -12,7 +12,7 @@ namespace UnityDemos.Services.TransferService
     {
         public OwnAccountTransferService()
         {
-            Debug.WriteLine(this.GetType().Name + " Created");
+            Debug.WriteLine("*** Dependency " + this.GetType().Name + " Created");
         }
 
         public bool SaveWithinCustomerAccountTransaction( IAccountService accountService, IAccountLogging accountLogging, Transaction transaction)

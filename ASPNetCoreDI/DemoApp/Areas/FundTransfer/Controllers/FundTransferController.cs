@@ -4,6 +4,7 @@ using DemoApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UnityDemos.Services.AccountService;
+using UnityDemos.Services.LoggingService;
 using UnityDemos.Services.Models;
 using UnityDemos.Services.TransferService;
 
@@ -15,38 +16,27 @@ namespace UnityDemos.Web.Areas.FundTransfer.Controllers
         //
         // GET: /FundTransfer/FundTransfer/
 
-        private readonly IFundTransferService _fundTransferService;
+        private readonly IFundTransferService[] _fundTransferService;
         private readonly IAccountService _accountService;
+        private readonly IAccountLogging _accountLogging;
         private readonly ILogger _logger;
-        //public FundTransferController(IAccountService accountService, IFundTransferService fundTransferService, ILogger<FundTransferController> logger) : base(logger)
-        //{
-        //    _logger = logger;
-        //    this._accountService = accountService;
-        //    this._fundTransferService = fundTransferService;
-        //}
 
-        public FundTransferController(IAccountService accountService, IFundTransferService fundTransferService, ILogger<FundTransferController> logger) : base(logger)
+        public FundTransferController(IAccountService accountService, IEnumerable<IFundTransferService> fundTransferService, 
+            IAccountLogging accountLogging,  ILogger<FundTransferController> logger) : base(logger)
         {
             _logger = logger;
             this._accountService = accountService;
-            this._fundTransferService = fundTransferService;
+            this._accountLogging = accountLogging; 
+            this._fundTransferService = fundTransferService.ToArray();
         }
 
 
-        //public ActionResult Index()
-        //{
-        //    return TryGetActionResult(() =>
-        //    {
-        //        var fundTransferTyoesList = _fundTransferService.GetFundTransferTypes();
-        //        return View(fundTransferTyoesList);
-        //    });
-        //}
 
         public ActionResult Index()
         {
             return TryGetActionResult(() =>
             {
-                var fundTransferTyoesList = _fundTransferService.GetFundTransferTypes();
+                var fundTransferTyoesList = _fundTransferService[0].GetFundTransferTypes();
                 return View(fundTransferTyoesList);
             });
         }
@@ -78,8 +68,11 @@ namespace UnityDemos.Web.Areas.FundTransfer.Controllers
         {
             return TryGetActionResult(() =>
             {
+                _accountLogging.LogAccountAccess(amountTransferInfo.CustomerId, amountTransferInfo.FromAccount, "Transfer From Starting");
+                //Get the transfer service. 
+                var serviceImpl = _fundTransferService.First(e => e.HandlesTransactionType(amountTransferInfo.TypeOfTransaction));
                 var currentBalance =
-                    _fundTransferService.GetCurrentBalanceAfterTransfer(_accountService, amountTransferInfo);
+                    serviceImpl.GetCurrentBalanceAfterTransfer(_accountService, amountTransferInfo);
 
                 return Json(currentBalance);
             });
