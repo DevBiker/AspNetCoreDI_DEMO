@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DemoApp.Services;
+using DemoApp.Services.RequestInfoService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,9 +40,12 @@ namespace DemoApp
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+
+            services.AddHttpContextAccessor();
+            
             services
-                .AddTransient<IAccountService>(
-                    provider => new AccountService(provider.GetService<IAccountLogging>()))
+                .AddTransient<IRequestInfoService, ContextRequestInfoService>()
+                .AddTransient<IAccountService, AccountService>()
                 .AddTransient<ICustomerService, CustomerService>()
                 //The account logging service is used by multiple other dependencies in a call. 
                 .AddTransient<IAccountLogging, AccountLoggingService>()
