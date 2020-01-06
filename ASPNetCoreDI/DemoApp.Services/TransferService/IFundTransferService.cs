@@ -7,11 +7,11 @@ namespace DemoApp.Services.TransferService
 {
   public interface IFundTransferService
     {
-      bool SaveWithinCustomerAccountTransaction(IAccountService accountService, IAccountLogging accountLogging, Transaction transaction);
+      bool SaveWithinCustomerAccountTransaction(Transaction transaction);
 
       List<TransactionType> GetFundTransferTypes();
 
-      double GetCurrentBalanceAfterTransfer(IAccountService accountService, Transaction accountInfo);
+      double GetCurrentBalanceAfterTransfer(Transaction accountInfo);
 
 
       bool HandlesTransactionType(TransactionType transactionType);

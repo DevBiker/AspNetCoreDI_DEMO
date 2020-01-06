@@ -10,12 +10,17 @@ namespace DemoApp.Services.TransferService
 {
     public class IntraBankTransferService : IFundTransferService
     {
-        public IntraBankTransferService()
+        IAccountService _accountService;
+        IAccountLogging _accountLogging;
+
+        public IntraBankTransferService(IAccountService accountService, IAccountLogging accountLogging)
         {
+            _accountService = accountService;
+            _accountLogging = accountLogging;
             Debug.WriteLine("*** Dependency " + this.GetType().Name + " Created");
         }
 
-        public bool SaveWithinCustomerAccountTransaction(IAccountService accountService, IAccountLogging accountLogging, Transaction transaction)
+        public bool SaveWithinCustomerAccountTransaction( Transaction transaction)
         {
             return true;
         }
@@ -31,10 +36,10 @@ namespace DemoApp.Services.TransferService
 
 
 
-        public double GetCurrentBalanceAfterTransfer(IAccountService accountService, Transaction accountInfo)
+        public double GetCurrentBalanceAfterTransfer( Transaction accountInfo)
         {
 
-            var currentBalance = accountService.GetCurrentBalance(Convert.ToDouble(accountInfo.FromAccount));
+            var currentBalance = _accountService.GetCurrentBalance(Convert.ToDouble(accountInfo.FromAccount));
 
             var currentBalanceAfterTransfer = currentBalance - Convert.ToDouble(accountInfo.TransactionAmount);
 

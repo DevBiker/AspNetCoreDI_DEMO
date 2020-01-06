@@ -10,18 +10,23 @@ namespace DemoApp.Services.TransferService
 {
     public class OwnAccountTransferService : IFundTransferService
     {
-        public OwnAccountTransferService()
+        IAccountService _accountService;
+        IAccountLogging _accountLogging;
+
+        public OwnAccountTransferService(IAccountService accountService, IAccountLogging accountLogging)
         {
+            _accountService = accountService;
+            _accountLogging = accountLogging;
             Debug.WriteLine("*** Dependency " + this.GetType().Name + " Created");
         }
 
-        public bool SaveWithinCustomerAccountTransaction( IAccountService accountService, IAccountLogging accountLogging, Transaction transaction)
+        public bool SaveWithinCustomerAccountTransaction( Transaction transaction)
         {
             //Get both accounts. 
-            var fromAccount = accountService.GetAccountDetail(transaction.FromAccount);
-            accountLogging.LogAccountAccess(transaction.CustomerId, fromAccount.AccountNumber, "FROM Account Transfer");
-            var toAccount = accountService.GetAccountDetail(transaction.ToAccount);
-            accountLogging.LogAccountAccess(transaction.CustomerId, toAccount.AccountNumber, "TO Account Transfer");
+            var fromAccount = _accountService.GetAccountDetail(transaction.FromAccount);
+            _accountLogging.LogAccountAccess(transaction.CustomerId, fromAccount.AccountNumber, "FROM Account Transfer");
+            var toAccount = _accountService.GetAccountDetail(transaction.ToAccount);
+            _accountLogging.LogAccountAccess(transaction.CustomerId, toAccount.AccountNumber, "TO Account Transfer");
             if (fromAccount.CustomerId != toAccount.CustomerId)
             {
                 return false;
@@ -40,10 +45,10 @@ namespace DemoApp.Services.TransferService
 
 
 
-        public double GetCurrentBalanceAfterTransfer(IAccountService accountService, Transaction accountInfo)
+        public double GetCurrentBalanceAfterTransfer(Transaction accountInfo)
         {
 
-            var currentBalance = accountService.GetCurrentBalance(Convert.ToDouble(accountInfo.FromAccount));
+            var currentBalance = _accountService.GetCurrentBalance(Convert.ToDouble(accountInfo.FromAccount));
 
             var currentBalanceAfterTransfer = currentBalance - Convert.ToDouble(accountInfo.TransactionAmount);
 

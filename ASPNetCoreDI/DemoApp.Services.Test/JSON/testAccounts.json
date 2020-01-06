@@ -1,0 +1,18 @@
+[
+  {
+    "customerId": 999,
+    "accountNumber": 111,
+    "accountType": "Checking",
+    "MinBalance": 400,
+    "BranchName": "Katy",
+    "DateOfOpening": "2000-01-05T00:00"
+  },
+  {
+    "customerId": 999,
+    "accountNumber": 222,
+    "accountType": "Checking",
+    "MinBalance": 400,
+    "BranchName": "Katy",
+    "DateOfOpening": "2000-01-05T00:00"
+  }
+]

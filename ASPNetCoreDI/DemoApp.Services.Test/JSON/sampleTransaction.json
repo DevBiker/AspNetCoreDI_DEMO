@@ -1,0 +1,9 @@
+{
+  "FromAccount": 111,
+  "IsSelected": true,
+  "ToAccount": 222,
+  "TransactionAmount": 600,
+  "TransactionId": 1,
+  "TypeOfTransaction": 0, 
+  "CustomerId":  999
+}

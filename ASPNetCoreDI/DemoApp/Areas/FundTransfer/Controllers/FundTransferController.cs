@@ -72,7 +72,7 @@ namespace DemoApp.Web.Areas.FundTransfer.Controllers
                 //Get the transfer service. 
                 var serviceImpl = _fundTransferService.First(e => e.HandlesTransactionType(amountTransferInfo.TypeOfTransaction));
                 var currentBalance =
-                    serviceImpl.GetCurrentBalanceAfterTransfer(_accountService, amountTransferInfo);
+                    serviceImpl.GetCurrentBalanceAfterTransfer(amountTransferInfo);
 
                 return Json(currentBalance);
             });

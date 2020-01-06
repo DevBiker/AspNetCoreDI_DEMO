@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="JSON\sampleTransaction.json" />
+    <None Remove="JSON\testAccounts.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="JSON\sampleTransaction.json" />
+    <EmbeddedResource Include="JSON\testAccounts.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="JustMock" Version="2019.3.910.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -16,5 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DemoApp.Services\DemoApp.Services.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties json_4testaccounts_1json__JsonSchema="http://json.schemastore.org/azure-iot-edge-deployment-2.0" /></VisualStudio></ProjectExtensions>
 
 </Project>
