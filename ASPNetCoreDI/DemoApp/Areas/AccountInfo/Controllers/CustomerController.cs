@@ -6,10 +6,10 @@ using DemoApp.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using UnityDemos.Services.CustomerService;
+using DemoApp.Services.CustomerService;
 
 
-namespace UnityDemos.Web.Areas.AccountInfo.Controllers
+namespace DemoApp.Web.Areas.AccountInfo.Controllers
 {
     [Area("AccountInfo")]
     public class CustomerController : BaseController

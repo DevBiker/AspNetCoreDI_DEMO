@@ -46,7 +46,7 @@ $(document).ready(function () {
                     valuesinResponse.push(response[i].branchName);
                     var openingDate = response[i].dateOfOpening;
                     var date = new Date(openingDate);
-                    var formatedDate = (date.getMonth(openingDate) + 1) + "-" + (date.getDate(openingDate)) + "-" + date.getFullYear(openingDate) ;
+                    var formatedDate = (date.getMonth(openingDate) + 1) + "-" + date.getDate(openingDate) + "-" + date.getFullYear(openingDate);
                     valuesinResponse.push(formatedDate);
                     valuesinResponse.push(response[i].currentBalance);
                 }
@@ -96,7 +96,7 @@ $(document).ready(function () {
 
                     var optionTag = "";
                     for (var i = 0; i < result.length; i++) {
-                        optionTag = optionTag + "<option >" + result[i] + "</option >"
+                        optionTag = optionTag + "<option >" + result[i] + "</option >";
                     }
 
                     var selecttag = "<select id='fromAccount'>" + "</select>" + "<br />" + "<br />" + "<input id='toAccount'>" + "</input>" + "<br />" + "<br />" + "<input id='amount'>" + "</input>" + "<br />" + "<br />" + "<span id='currentBalance'>" + "</span>" + "<br />" + "<input  id='btnAmountTransfer' type='button' value='Transfer Amount'>" + "</input>";
@@ -104,7 +104,7 @@ $(document).ready(function () {
 
                     $(rightDiv).appendTo("#fundTransferForm").empty().append(selecttag);
                     $(optionTag).appendTo("select");
-                    $("#fromAccount").css('width', 175)
+                    $("#fromAccount").css('width', 175);
 
                 }
 
@@ -130,7 +130,7 @@ $(document).ready(function () {
             type: 'POST',
             dataType: "json",
             success: function (result) {
-                $("span[id='currentBalance']").text(result).css('color', 'red');;
+                $("span[id='currentBalance']").text(result).css('color', 'red');
             }
         });
     });

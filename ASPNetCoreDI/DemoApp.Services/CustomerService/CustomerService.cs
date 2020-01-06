@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using UnityDemos.Services.LoggingService;
-using UnityDemos.Services.Models;
+using DemoApp.Services.LoggingService;
+using DemoApp.Services.Models;
 
-namespace UnityDemos.Services.CustomerService
+namespace DemoApp.Services.CustomerService
 {
     public class CustomerService : ICustomerService
     {

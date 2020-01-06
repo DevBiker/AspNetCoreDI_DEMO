@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnityDemos.Services.Models
+namespace DemoApp.Services.Models
 {
   public   class Account
     {       

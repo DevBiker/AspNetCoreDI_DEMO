@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using UnityDemos.Services.AccountService;
-using UnityDemos.Services.LoggingService;
-using UnityDemos.Services.Models;
+using DemoApp.Services.AccountService;
+using DemoApp.Services.LoggingService;
+using DemoApp.Services.Models;
 
-namespace UnityDemos.Services.TransferService
+namespace DemoApp.Services.TransferService
 {
     public class InterBankTransferService : IFundTransferService
     {

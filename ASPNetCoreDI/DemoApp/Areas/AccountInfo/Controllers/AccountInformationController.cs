@@ -4,11 +4,11 @@ using System.Linq;
 using DemoApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using UnityDemos.Services.AccountService;
-using UnityDemos.Services.CustomerService;
-using UnityDemos.Services.Models;
+using DemoApp.Services.AccountService;
+using DemoApp.Services.CustomerService;
+using DemoApp.Services.Models;
 
-namespace UnityDemos.Web.Areas.AccountInfo.Controllers
+namespace DemoApp.Web.Areas.AccountInfo.Controllers
 {
     [Area("AccountInfo")]
     public class AccountInformationController : BaseController

@@ -1,6 +1,6 @@
-﻿using UnityDemos.Services.Models;
+﻿using DemoApp.Services.Models;
 
-namespace UnityDemos.Services.CustomerService
+namespace DemoApp.Services.CustomerService
 {
     public interface ICustomerService
     {

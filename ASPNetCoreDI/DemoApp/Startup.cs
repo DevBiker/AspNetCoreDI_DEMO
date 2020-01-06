@@ -11,11 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using UnityDemos.Services.AccountService;
-using UnityDemos.Services.CustomerService;
-using UnityDemos.Services.LoggingService;
-using UnityDemos.Services.Models;
-using UnityDemos.Services.TransferService;
+using DemoApp.Services.AccountService;
+using DemoApp.Services.CustomerService;
+using DemoApp.Services.LoggingService;
+using DemoApp.Services.Models;
+using DemoApp.Services.TransferService;
 
 namespace DemoApp
 {

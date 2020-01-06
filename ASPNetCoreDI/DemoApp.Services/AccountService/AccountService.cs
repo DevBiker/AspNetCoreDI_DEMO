@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using UnityDemos.Services.LoggingService;
-using UnityDemos.Services.Models;
+using DemoApp.Services.LoggingService;
+using DemoApp.Services.Models;
 
-namespace UnityDemos.Services.AccountService
+namespace DemoApp.Services.AccountService
 {
     public class AccountService : IAccountService
     {

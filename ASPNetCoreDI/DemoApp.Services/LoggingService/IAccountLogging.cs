@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnityDemos.Services.LoggingService
+namespace DemoApp.Services.LoggingService
 {
     public interface IAccountLogging
     {

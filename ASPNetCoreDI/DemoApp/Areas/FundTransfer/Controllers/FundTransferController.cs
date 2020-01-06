@@ -3,12 +3,12 @@ using System.Linq;
 using DemoApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using UnityDemos.Services.AccountService;
-using UnityDemos.Services.LoggingService;
-using UnityDemos.Services.Models;
-using UnityDemos.Services.TransferService;
+using DemoApp.Services.AccountService;
+using DemoApp.Services.LoggingService;
+using DemoApp.Services.Models;
+using DemoApp.Services.TransferService;
 
-namespace UnityDemos.Web.Areas.FundTransfer.Controllers
+namespace DemoApp.Web.Areas.FundTransfer.Controllers
 {
     [Area("FundTransfer")]
     public class FundTransferController : BaseController

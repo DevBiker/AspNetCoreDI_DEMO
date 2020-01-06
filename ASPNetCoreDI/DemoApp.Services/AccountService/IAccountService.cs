@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using UnityDemos.Services.Models;
+using DemoApp.Services.Models;
 
-namespace UnityDemos.Services.AccountService
+namespace DemoApp.Services.AccountService
 {
     public interface IAccountService
     {
