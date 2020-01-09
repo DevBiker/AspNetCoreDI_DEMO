@@ -10,17 +10,14 @@ namespace UnityDemos.Services.TransferService
 {
     public class FundTransferService : IFundTransferService
     {
-        private readonly Dictionary<TransactionType, Type> _transferServices = new Dictionary<TransactionType, Type>();
+        private readonly IFundTransferService[] _fundTransferService;
 
 
 
-        public FundTransferService(KeyValuePair<TransactionType, Type>[] transferServices)
+        public FundTransferService(IEnumerable<IFundTransferService> fundTransferService)
         {
             Debug.WriteLine("*** Dependency " + this.GetType().Name + " Created");
-            foreach (var specificServices in transferServices)
-            {
-                _transferServices[specificServices.Key] = specificServices.Value;
-            }
+            _fundTransferService = fundTransferService.Where(e => e.GetType() != this.GetType()).ToArray();
         }
 
         public bool SaveWithinCustomerAccountTransaction(IAccountService accountService, IAccountLogging accountLogging, Transaction transaction)
@@ -32,9 +29,8 @@ namespace UnityDemos.Services.TransferService
 
         private IFundTransferService CreateService(TransactionType transactionType)
         {
-            var specificServiceType = _transferServices[transactionType];
-            IFundTransferService specificService = Activator.CreateInstance(specificServiceType) as IFundTransferService;
-            return specificService; 
+            return _fundTransferService.First(e => e.HandlesTransactionType(transactionType));
+
         }
 
         public List<TransactionType> GetFundTransferTypes()
@@ -55,7 +51,7 @@ namespace UnityDemos.Services.TransferService
         /// <inheritdoc />
         public bool HandlesTransactionType(TransactionType transactionType)
         {
-            return _transferServices.ContainsKey(transactionType); 
+            return _fundTransferService.Any(e => e.HandlesTransactionType(transactionType)); 
         }
     }
 }
