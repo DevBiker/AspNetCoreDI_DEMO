@@ -4,9 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework.Internal;
-using UnitTest.Tools;
 
-namespace DemoApp.Services.Test
+namespace DemoApp.Services.Test.TestServices
 {
     public class TestLogger : Microsoft.Extensions.Logging.ILogger
     {

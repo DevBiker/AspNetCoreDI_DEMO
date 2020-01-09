@@ -3,19 +3,19 @@ using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Telerik.JustMock;
 
-    using Newtonsoft.Json;
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Runtime.CompilerServices;
-    using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using DemoApp.Services.Test.TestServices;
 
-
-    namespace DemoApp.Services.Test
-    {
-        public abstract class UnitTestBase
+namespace DemoApp.Services.Test
+{
+    public abstract class UnitTestBase
         {
 
             [SetUp]
