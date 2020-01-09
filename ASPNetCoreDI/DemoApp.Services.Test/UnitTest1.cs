@@ -27,7 +27,7 @@ namespace DemoApp.Services.Test
             var accountLoggingSvc = Mock.Create<AccountLoggingService>(); 
 
             var transferService = new OwnAccountTransferService(accountService, accountLoggingSvc);
-            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction", t => { t.TransctionDate = DateTime.Now; });
+            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction.json", t => { t.TransctionDate = DateTime.Now; t.TransactionAmount = 100; });
 
 
             //Act 
@@ -48,7 +48,7 @@ namespace DemoApp.Services.Test
             
 
             var transferService = new OwnAccountTransferService(accountService, accountLoggingService);
-            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction", t => { t.TransctionDate = DateTime.Now; });
+            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction.json", t => { t.TransctionDate = DateTime.Now; });
             
             //Act 
             var result = transferService.GetCurrentBalanceAfterTransfer( testTransaction);
