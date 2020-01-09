@@ -24,10 +24,17 @@ namespace MyNamespace
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "posts")] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-            var res = _service.GetAllAccountInfo(2);
+            try
+            {
+                log.LogInformation("C# HTTP trigger function processed a request.");
+                var res = _service.GetAllAccountInfo(2);
 
-            return new JsonResult(res);
+                return new JsonResult(res);
+            }
+            catch(Exception ex)
+            {
+                return new OkObjectResult(ex.Message);
+            }
         }
     }
 }

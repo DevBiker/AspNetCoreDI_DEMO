@@ -20,8 +20,8 @@ namespace AzFunctionDi
             builder.Services.AddTransient<IAccountService, AccountService>();
             builder.Services.AddScoped<IAccountLogging, AccountLoggingService>();
             builder.Services.AddScoped<IRequestInfoService, ContextRequestInfoService>();
-            builder.Services.AddHttpContextAccessor(); 
-
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddLogging(); 
             
         }
     }

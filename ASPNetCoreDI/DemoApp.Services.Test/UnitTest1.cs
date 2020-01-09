@@ -96,7 +96,7 @@ namespace DemoApp.Services.Test
             var config = Mock.Create<IConfiguration>();
 
             //Act
-            var accountLoggingSevice = new AccountLoggingService(requestInfoService, config, TestLogger);
+            var accountLoggingSevice = new AccountLoggingService( TestLogger);
 
             Mock.Assert(TestLogger.LogEntries.Any(e => e.Output.Contains(testIpAddress)));
 
