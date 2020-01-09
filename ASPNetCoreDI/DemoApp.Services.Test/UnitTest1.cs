@@ -7,6 +7,8 @@ using System;
 using DemoApp.Services.Models;
 using DemoApp.Services.LoggingService;
 using System.Linq;
+using DemoApp.Services.RequestInfoService;
+using Microsoft.Extensions.Configuration;
 
 namespace DemoApp.Services.Test
 {
@@ -27,7 +29,7 @@ namespace DemoApp.Services.Test
             var accountLoggingSvc = Mock.Create<AccountLoggingService>(); 
 
             var transferService = new OwnAccountTransferService(accountService, accountLoggingSvc);
-            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction", t => { t.TransctionDate = DateTime.Now; });
+            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction.json", t => { t.TransctionDate = DateTime.Now; t.TransactionAmount = 100; });
 
 
             //Act 
@@ -48,7 +50,7 @@ namespace DemoApp.Services.Test
             
 
             var transferService = new OwnAccountTransferService(accountService, accountLoggingService);
-            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction", t => { t.TransctionDate = DateTime.Now; });
+            var testTransaction = DeserializeFileResource<Transaction>("sampleTransaction.json", t => { t.TransctionDate = DateTime.Now; });
             
             //Act 
             var result = transferService.GetCurrentBalanceAfterTransfer( testTransaction);
@@ -82,6 +84,22 @@ namespace DemoApp.Services.Test
             Mock.Assert(accountLoggingService);
             
             
+        }
+
+        [Test]
+        public void Account_Access_Logs_Source_IP_Address()
+        {
+            //Setup. 
+            string testIpAddress = "999.999.999.999";
+            var requestInfoService = Mock.Create<IRequestInfoService>();
+            requestInfoService.Arrange(e => e.IpAddress).Returns(testIpAddress);
+            var config = Mock.Create<IConfiguration>();
+
+            //Act
+            var accountLoggingSevice = new AccountLoggingService(requestInfoService, config, TestLogger);
+
+            Mock.Assert(TestLogger.LogEntries.Any(e => e.Output.Contains(testIpAddress)));
+
         }
     }
 }

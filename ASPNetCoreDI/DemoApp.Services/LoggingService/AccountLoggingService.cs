@@ -21,6 +21,7 @@ namespace DemoApp.Services.LoggingService
             _requestInfoService = requestInfoService ?? throw new ArgumentException(nameof(requestInfoService));
             _config = config ?? throw new ArgumentException(nameof(config));
             Debug.WriteLine("*** Dependency " + this.GetType().Name + " Created");
+            _logger = logger; 
 
         }
         /// <inheritdoc />

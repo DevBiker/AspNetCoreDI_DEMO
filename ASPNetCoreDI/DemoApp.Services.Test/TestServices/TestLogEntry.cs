@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 
-namespace UnitTest.Tools
+namespace DemoApp.Services.Test.TestServices
 {
     public abstract class TestLogEntry
     {
